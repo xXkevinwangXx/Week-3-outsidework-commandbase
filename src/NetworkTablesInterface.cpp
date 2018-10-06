@@ -5,17 +5,14 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#pragma once
-#include "RobotMap.h"
-#include <Commands/Subsystem.h>
+#include "NetworkTableInterface.h"
 
-class TankDrive : public frc::Subsystem {
-private:
-	// It's desirable that everything possible under private except
-	// for methods that implement subsystem capabilities
-
-public:
-	TankDrive();
-	void InitDefaultCommand() override;
-};
-
+double NetworkTablesInterface::getBoolCV();
+{
+	return nt::NetworkTableInstance::getDefault().getEntry("Entry Key").GetBool(-1);
+}
+//Kevin Wang
+double NetworkTablesInterface::getIntCV();
+{
+	return nt::NetworkTableInstance::getDefault().getEntry("Entry Key").GetInt(-1);
+}

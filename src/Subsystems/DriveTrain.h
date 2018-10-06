@@ -5,17 +5,26 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "TankDrive.h"
-#include "../RobotMap.h"
+#ifndef DriveTrain_H
+#define DriveTrain_H
 
-TankDrive::TankDrive() : Subsystem("TankDrive"),left(new Jaguar(LEFT_MOTOR_PORT)), right(new Jaguar(RIGHT_MOTOR_PORT)) {
+#include <Commands/Subsystem.h>
+#include "WPILib.h"
+#include "ctre/Phoenix.h"
 
-}
+class DriveTrain : public frc::Subsystem {
+private:
 
-void TankDrive::InitDefaultCommand() {
-	// Set the default command for a subsystem here.
-	// SetDefaultCommand(new MySpecialCommand());
-}
 
-// Put methods for controlling this subsystem
-// here. Call these from Commands.
+	TalonSRX* left;
+	TalonSRX* right;
+	TalonSRX* arm;
+
+public:
+	DriveTrain();
+	void InitDefaultCommand();
+	void tankDrive(double leftVal, double rightVal);
+
+
+};
+
