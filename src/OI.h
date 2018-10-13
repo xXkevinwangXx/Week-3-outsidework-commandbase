@@ -7,7 +7,25 @@
 
 #pragma once
 
+#include <WPILib.h>
+#include "Joystick.h"
+
+
 class OI {
+
+private:
+	frc::Joystick* left;
+	frc::Joys`tick* right;
+	frc::Joystick* arm;
+
+	frc::Button* armUp;
+	frc::Button* armDown;
+
 public:
 	OI();
+	frc::Joystick* getLeftStick();
+	frc::Joystick* getRightStick();
+	frc::Joystick* getArmStick();
+
+
 };

@@ -13,5 +13,5 @@ class NetworkTablesInterface {
 public:
 	static bool	getBoolCV();
 	static int getIntCV();
-
+	static double getDoubleCV();
 };

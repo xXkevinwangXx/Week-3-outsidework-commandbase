@@ -7,8 +7,8 @@
 
 #include "TankDrive.h"
 #include "Robot.h"
-#include "../OI.h"
-#include <iostream>
+#include "OI.h"
+
 
 using namespace std;
 
@@ -19,12 +19,12 @@ TankDrive::TankDrive() {
 
 }
 void TankDrive::Initialize() {
-	drive->resetEncoders();
+
 }
 
 void TankDrive::Execute() {
 	Robot::drive->tankDrive(Robot::oi->getLeftStick()->GetY(), Robot::oi->getRightStick()->GetY());
-	std::cout << Robot::oi->getLeftStick()->GetY() << std::endl;
+	std::cout << Robot::OI->getLeftStick()->GetY() << std::endl;
 
 }
 

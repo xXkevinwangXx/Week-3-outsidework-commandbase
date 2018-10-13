@@ -18,7 +18,7 @@ private:
 
 	TalonSRX* left;
 	TalonSRX* right;
-	TalonSRX* arm;
+
 
 public:
 	DriveTrain();

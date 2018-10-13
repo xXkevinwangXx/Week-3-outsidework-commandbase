@@ -5,14 +5,19 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "NetworkTableInterface.h"
+#include "NetworkTables/NetworkTableInstance.h"
 
-double NetworkTablesInterface::getBoolCV();
+bool NetworkTablesInterface::getBoolCV()
 {
-	return nt::NetworkTableInstance::getDefault().getEntry("Entry Key").GetBool(-1);
+	return nt::NetworkTableInstance::getDefault().getEntry("cv").GetBoolean(-1);
 }
 //Kevin Wang
-double NetworkTablesInterface::getIntCV();
+int NetworkTablesInterface::getIntCV()
 {
 	return nt::NetworkTableInstance::getDefault().getEntry("Entry Key").GetInt(-1);
+}
+
+double NetworkTablesInterface::getDoubleCV()
+{
+	return nt::NetworkTableInstance::getDefault().getEntry("Entry Key").GetDouble(-1);
 }
