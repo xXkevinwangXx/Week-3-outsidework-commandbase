@@ -8,23 +8,17 @@
 #include "TankDrive.h"
 #include "Robot.h"
 #include "OI.h"
-
-
-using namespace std;
+#include "DriveTrain.h"
 
 TankDrive::TankDrive() {
-	Requires(Robot::drive);
-
-	// TODO Auto-generated constructor stub
 
 }
 void TankDrive::Initialize() {
-
+	m_drivetrain->resetEncoders();
 }
 
 void TankDrive::Execute() {
-	Robot::drive->tankDrive(Robot::oi->getLeftStick()->GetY(), Robot::oi->getRightStick()->GetY());
-	std::cout << Robot::OI->getLeftStick()->GetY() << std::endl;
+	Robot::m_drivetrain->tankDrive(Robot::m_oi->getLeftStick()->GetY(), Robot::m_oi->getRightStick()->GetY());
 
 }
 

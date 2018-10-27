@@ -12,7 +12,7 @@
 using namespace std;
 
 DriveTrain::DriveTrain() : Subsystem("DriveTrain"),
-left(new TalonSRX(LEFTMOTOR)), right(new TalonSRX(RIGHTMOTOR))/*, arm(new TalonSRX(2))*/ {
+left(new TalonSRX(LEFT_MOTOR_PORT)), right(new TalonSRX(RIGHT_MOTOR_PORT))/*, arm(new TalonSRX(2))*/ {
 	right->SetInverted(true);
 }
 
@@ -25,6 +25,7 @@ void DriveTrain::InitDefaultCommand() {
 void DriveTrain::tankDrive(double leftVal, double rightVal) {
 	left->Set(ControlMode::PercentOutput, leftVal);
 	right->Set(ControlMode::PercentOutput, rightVal);
-
+	m_arm -> Set(ControlMode::PercentOutput, leftVal);
+	std::cout << leftVal << std::end1;
 
 }

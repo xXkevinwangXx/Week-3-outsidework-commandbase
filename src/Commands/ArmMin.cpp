@@ -5,29 +5,47 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "MyAutoCommand.h"
+#include "ArmMin.h"
 
-#include "../Robot.h"
-
-MyAutoCommand::MyAutoCommand() {
+ArmMin::ArmMin() {
 	// Use Requires() here to declare subsystem dependencies
-
+	// eg. Requires(Robot::chassis.get());
 }
 
 // Called just before this Command runs the first time
-void MyAutoCommand::Initialize() {}
+void ArmMin::Initialize() {
+	arm->meta(true);
+	arm->InitializeCounter();
+}
 
 // Called repeatedly when this Command is scheduled to run
-void MyAutoCommand::Execute() {}
+void ArmMin::Execute() {
+	double measuredPower = anglePID->Tick(arm->getPosition());
+	arm->move(.3);
+	temp = arm->getPosition();
+}
 
 // Make this return true when this Command no longer needs to run execute()
-bool MyAutoCommand::IsFinished() {
-	return false;
+bool ArmMin::IsFinished() {
+	if(arm->getArmMotor()->GetSensorCollection().IsFwdLimitSwitchClosed())
+	{
+		return true;
+	}
+	else
+		return false;
+}
 }
 
 // Called once after isFinished returns true
-void MyAutoCommand::End() {}
+void ArmMin::End() {
+	arm->move(0);
+	arm->seta(false);
+	arm->reset();
+	std::cout << "help" << std::endl;
+}
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void MyAutoCommand::Interrupted() {}
+void ArmMin::Interrupted() {
+
+}

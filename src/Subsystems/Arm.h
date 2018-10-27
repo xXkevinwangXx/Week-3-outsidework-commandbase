@@ -5,27 +5,20 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#pragma once
+#ifndef Arm_H
+#define Arm_H
 
-#include <WPILib.h>
-#include "Joystick.h"
+#include <Commands/Subsystem.h>
+#include "ctre/Phoenix.h"
 
-
-class OI {
-
+class Arm : public frc::Subsystem {
 private:
-	 Joystick* left;
-	 Joystick* right;
-	 Joystick* arm;
-
-	 Button* armUp;
-	 Button* armDown;
+	TalonSRX* arm;
 
 public:
-	OI();
-	Joystick* getLeftStick();
-	Joystick* getRightStick();
-	Joystick* getArmStick();
-
-
+	Arm();
+	void InitDefaultCommand();
+	void armMove(double moveVal);
 };
+
+#endif Arm_H

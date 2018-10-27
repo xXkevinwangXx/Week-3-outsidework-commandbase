@@ -7,25 +7,20 @@
 
 #pragma once
 
-#include <WPILib.h>
-#include "Joystick.h"
+#include <Commands/Command.h>
 
-
-class OI {
+class ArmMin : public frc::Command {
 
 private:
-	 Joystick* left;
-	 Joystick* right;
-	 Joystick* arm;
-
-	 Button* armUp;
-	 Button* armDown;
+	WVPIDController* anglePID;
+	double temp;
 
 public:
-	OI();
-	Joystick* getLeftStick();
-	Joystick* getRightStick();
-	Joystick* getArmStick();
-
-
+	ArmMin();
+	void Initialize() override;
+	void Execute() override;
+	bool IsFinished() override;
+	void End() override;
+	void Interrupted() override;
 };
+

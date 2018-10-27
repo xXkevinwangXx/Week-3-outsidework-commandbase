@@ -9,24 +9,24 @@
 
 #include <WPILib.h>
 
-OI::OI(): armStick(new Joystick(0)), open(new JoystickButton(armStick, 1)){
-	open ->WhenPressed(new openClaw());
-	opne->WhenReleased(new closeClaw());
+OI::OI() : left(new Joystick(1)), right(new Joystick(0)), arm(new Joystick(2)),
+	armUp(new JoystickButton(left, 4)), armDown(new JoystickButton(left, 3)) {
+	armUp->WhenPressed(new ArmMove(0.2));
+	armDown->WhenPressed(new ArmMove(-0.2));
+	armUp->WhenReleased(new ArmMove(0));
+	armDown->WhenReleased(new ArmMove(0));
 }
 
-OI::OI() : driveStickLeft(new Joystick(2)), driveStickRight(new Joystick(1)){
-	shooterButon = new JoystickButton(driveStickLeft, 5);
-	shooterButton->WhenPressed(new ShootBall());
+frc::Joystick* OI::getLeftStick() {
+	return left;
 }
 
-Joystick* OI::getArmStick()
-{
-	return armStick;
+frc::Joystick* OI::getRightStick() {
+	return right;
 }
 
-
-Joystick* OI::getDriveStickLeft() {
-	return driveStickLeft;
+frc::Joystick* OI::getArmStick() {
+	return arm;
 }
 
 Joystick* OI::getDriveStickRight() {

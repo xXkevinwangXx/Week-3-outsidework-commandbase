@@ -7,25 +7,18 @@
 
 #pragma once
 
-#include <WPILib.h>
-#include "Joystick.h"
+#include <Commands/Command.h>
 
-
-class OI {
+class ArmMax : public CommandBase {
 
 private:
-	 Joystick* left;
-	 Joystick* right;
-	 Joystick* arm;
-
-	 Button* armUp;
-	 Button* armDown;
-
+	WVPIDController* anglePID;
 public:
-	OI();
-	Joystick* getLeftStick();
-	Joystick* getRightStick();
-	Joystick* getArmStick();
-
-
+	ArmMax();
+	void Initialize() override;
+	void Execute() override;
+	bool IsFinished() override;
+	void End() override;
+	void Interrupted() override;
 };
+
